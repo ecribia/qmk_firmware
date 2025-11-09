@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        OSL(1),    SE_Q,    SE_X,    SE_M,    SE_C,    SE_V,                         SE_K,    SE_P, SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          OSL(3), LT(2,KC_SPC), KC_LGUI,    KC_ENT, LSFT_T(KC_BSPC), LT(2,QK_REP)
+                                          OSL(3), LT(2,KC_SPC), KC_LGUI,    QK_REP, LSFT_T(QK_AREP), QK_REP
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -113,6 +113,27 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return TAPPING_TERM;
     }
+}
+
+uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
+  switch (keycode) {
+        case LCTL_T(SE_E): return SE_U;  // Was SE_E
+        case SE_F: return SE_Y;
+        case SE_G: return SE_S;
+        case LT(1, SE_H): return SE_Y;   // Was SE_H
+        case SE_O: return SE_A;
+        case SE_P: return SE_H;
+        case LCTL_T(SE_R): return SE_L;  // Was SE_R
+        case LT(1, SE_S): return SE_C;   // Was SE_S
+        case SE_U: return SE_E;
+        case SE_W: return SE_S;
+        case SE_Y: return SE_QUOT;
+        case LT(2, KC_SPC): case SE_MINS: case SE_UNDS: {
+          set_oneshot_mods(MOD_BIT(KC_RSFT));
+          return KC_NO;
+        };
+    }
+    return keycode;  // Defer to default definitions.
 }
 
 bool is_flow_tap_key(uint16_t keycode) {
