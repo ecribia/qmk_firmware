@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_1,    SE_Q,    SE_W,    SE_E,    SE_R,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_F,    TO(0),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_T(KC_ESC), SE_2, SE_A,   SE_S,    SE_D,    SE_F,                         SE_H,    SE_J,    SE_K,    SE_L, SE_SCLN, SE_QUOT,
+       KC_ESC,    SE_2,    SE_A,    SE_S,    SE_D,    SE_F,                         SE_H,    SE_J,    SE_K,    SE_L, SE_SCLN, SE_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    SE_3,    SE_Z,    SE_X,    SE_C,    SE_V,                         SE_N,    SE_M,    SE_G,    SE_P, SE_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_P,  SE_ARNG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_T(KC_ESC), SE_A, SE_S,   SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,
+       KC_ESC,    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_LSFT,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_MINS, SE_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -147,9 +147,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LAG_T(KC_SPC):
-        case SFT_AREP:
         case ALGR_REP:
-            return 110;
+            return 170;
         default:
             return TAPPING_TERM;
     }
@@ -177,7 +176,7 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case SE_DOT: return SE_SLSH;
         case SE_U: return SE_E;
         case SE_W: return SE_S;
-        case LT(2, KC_SPC): case SE_MINS: case SE_UNDS: {
+        case LAG_T(KC_SPC): case SE_MINS: case SE_UNDS: {
           set_oneshot_mods(MOD_BIT(KC_RSFT));
           return KC_NO;
         };
@@ -193,8 +192,6 @@ bool is_flow_tap_key(uint16_t keycode) {
     // Exclude specific layer-tap and mod-tap keys
     switch (keycode) {
         case LAG_T(KC_SPC):
-        case SFT_AREP:
-        case ALGR_REP:
             return false;        // Disable Flow Tap for these keys
     }
 
@@ -214,9 +211,10 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record,
                            uint16_t prev_keycode) {
     if (is_flow_tap_key(keycode) && is_flow_tap_key(prev_keycode)) {
         switch (keycode) {
-            case LT(1, SE_S):
-            case LT(1, SE_H):
-
+            case LT(1,SE_S):
+            case LT(1,SE_H):
+            case LT(2,SE_C):
+            case LT(2,SE_P):
                 return 50;  // Short timeout for these keys
 
             default:
@@ -231,8 +229,6 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     // Allow one-handed chords for these keys
     switch (tap_hold_keycode) {
         case LAG_T(KC_SPC):
-        case SFT_AREP:
-        case ALGR_REP:
             return true;  // Allow chordal hold even on same hand
     }
 
