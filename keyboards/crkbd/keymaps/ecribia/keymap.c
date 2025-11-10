@@ -22,71 +22,74 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 enum layers {
     _BASE,
     _SYM,
+    _NUM,
     _NAV,
-    _FUNC,
     _GAME,
     _QWERTY
 };
+
+#define SFT_AREP LSFT_T(KC_0)
+#define ALGR_REP ALGR_T(KC_1)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_B,    SE_L,    SE_D,    SE_W,    SE_Z,                      SE_QUOT,    SE_F,    SE_O,    SE_U,    SE_J,   TO(4),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  LCTL_T(KC_ESC),LGUI_T(SE_N),LCTL_T(SE_R),LALT_T(SE_T),LT(1,SE_S),SE_G,       SE_Y,LT(1,SE_H),LALT_T(SE_A),LCTL_T(SE_E),LGUI_T(SE_I),SE_ODIA,
+  LCTL_T(KC_ESC),LGUI_T(SE_N),LALT_T(SE_R),LCTL_T(SE_T),LT(1,SE_S),SE_G,         SE_Y,LT(1,SE_H),LCTL_T(SE_A),LALT_T(SE_E),LGUI_T(SE_I),SE_ODIA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       OSL(1),    SE_Q,    SE_X,    SE_M,    SE_C,    SE_V,                         SE_K,    SE_P, SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
+       OSL(1),    SE_Q,    SE_X,    SE_M,LT(2,SE_C),  SE_V,                      SE_K,LT(2,SE_P), SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          OSL(3), LT(2,KC_SPC), KC_LGUI,    KC_DEL, QK_AREP, QK_REP
+                                         OSL(3),LAG_T(KC_SPC), KC_LGUI,    KC_BSPC, SFT_AREP, ALGR_REP
                                       //`--------------------------'  `--------------------------'
 
   ),
 
   [_SYM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, SE_EXLM,   SE_AT, SE_HASH,  SE_DLR, SE_PERC,                         SE_6,    SE_7,    SE_8,    SE_9,    SE_0, KC_BSPC,
+      SE_SECT, SE_HALF,  SE_DLR, SE_AMPR, SE_PERC, XXXXXXX,                      SE_DQUO, SE_PLUS, SE_SLSH, SE_UNDS, SE_BSLS, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, SE_LBRC, SE_LCBR, SE_LPRN, XXXXXXX,                      KC_LEFT,    SE_4,    SE_5,    SE_6, XXXXXXX, XXXXXXX,
+      XXXXXXX, SE_LABK, SE_LBRC, SE_LCBR, SE_LPRN,   SE_AT,                      SE_HASH,  SE_EQL, SE_ASTR, SE_SCLN, SE_COLN, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, SE_RBRC, SE_RCBR, SE_RPRN, XXXXXXX,                      XXXXXXX,    SE_1,    SE_2,    SE_3, XXXXXXX, XXXXXXX,
+      XXXXXXX, SE_RABK, SE_RBRC, SE_RCBR, SE_RPRN, XXXXXXX,                      SE_EURO, SE_MINS, SE_PIPE, SE_CIRC, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, _______
+                                            TO(0),  KC_SPC, SE_TILD,     KC_DEL,  KC_ENT, _______
+                                      //`--------------------------'  `--------------------------'
+  ),
+
+  [_NUM] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+        TO(0), XXXXXXX,   KC_F8,   KC_F8,   KC_F9,  KC_F10,                      XXXXXXX,    SE_7,    SE_8,    SE_9, XXXXXXX,   TO(3),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+        TO(1), XXXXXXX,   KC_F4,   KC_F5,   KC_F6,  KC_F11,                      XXXXXXX,    SE_4,    SE_5,    SE_6, XXXXXXX,   TO(4),
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+------ -|
+        TO(2), XXXXXXX,   KC_F1,   KC_F2,   KC_F3,  KC_F12,                      XXXXXXX,    SE_1,    SE_2,    SE_3, XXXXXXX,   TO(5),
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                            TO(0),  KC_SPC, _______,    KC_BSPC,  KC_ENT,    SE_0
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB, LGUI(SE_1), LGUI(SE_2), LGUI(SE_3), LGUI(SE_4), LGUI(SE_5),       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, KC_PGDN, KC_PGUP, KC_PSCR, KC_CAPS, XXXXXXX,                      XXXXXXX, SE_ADIA, SE_ODIA, SE_ARNG, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, LALT(SE_1), LALT(SE_2), LALT(SE_3), LALT(SE_4), XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX,  KC_INS, KC_HOME,LGUI(KC_PSCR), CW_TOGG, XXXXXXX,                 XXXXXXX, KC_LEFT, KC_DOWN,   KC_UP,KC_RGHT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX,  KC_END, XXXXXXX, XXXXXXX, XXXXXXX,                      MS_BTN2, MS_LEFT, MS_DOWN,   MS_UP,MS_RGHT, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, _______
-                                      //`--------------------------'  `--------------------------'
-  ),
-
-  [_FUNC] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, _______
+                                            TO(0),  KC_SPC, _______,    MS_BTN1, MS_WHLD, MS_WHLU
                                       //`--------------------------'  `--------------------------'
   ),
 
   [_GAME] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_P,  KC_BSPC,
+       KC_TAB,    SE_1,    SE_Q,    SE_W,    SE_E,    SE_R,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_F,    TO(0),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_T(KC_ESC),    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_SCLN, SE_QUOT,
+      LCTL_T(KC_ESC), SE_2, SE_A,   SE_S,    SE_D,    SE_F,                         SE_H,    SE_J,    SE_K,    SE_L, SE_SCLN, SE_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_SLSH,  KC_ESC,
+      KC_LSFT,    SE_3,    SE_Z,    SE_X,    SE_C,    SE_V,                         SE_N,    SE_M,    SE_G,    SE_P, SE_SLSH,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, _______
+                                          KC_LGUI,  KC_SPC, _______,    KC_BSPC,    SE_T,  KC_ENT
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -95,21 +98,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_Q,    SE_W,    SE_E,    SE_R,    SE_T,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_P,  SE_ARNG,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      LCTL_T(KC_ESC),    SE_A,    SE_S,    SE_D,    SE_F,    SE_G,                  SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,
+      LCTL_T(KC_ESC), SE_A, SE_S,   SE_D,    SE_F,    SE_G,                         SE_H,    SE_J,    SE_K,    SE_L, SE_ODIA, SE_ADIA,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_MINS,  SE_MINS,
+      KC_LSFT,    SE_Z,    SE_X,    SE_C,    SE_V,    SE_B,                         SE_N,    SE_M, SE_COMM,  SE_DOT, SE_MINS, SE_MINS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, _______,  KC_SPC,     KC_ENT, _______, _______
+                                            TO(0),  KC_SPC, _______,    KC_BSPC, KC_LSFT,  KC_ENT
                                       //`--------------------------'  `--------------------------'
 
   )
 };
 
+const uint16_t PROGMEM exlm_combo[] = {SE_M, LT(2,SE_C), COMBO_END};
+const uint16_t PROGMEM ques_combo[] = {SE_COMM, LT(2,SE_P), COMBO_END};
+combo_t key_combos[] = {
+    COMBO(exlm_combo, SE_EXLM),
+    COMBO(ques_combo, SE_QUES),
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch(keycode) {
+    case SFT_AREP:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(QK_AREP);
+        return false;
+      }
+      break;
+
+    case ALGR_REP:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(QK_REP);
+        return false;
+      }
+      break;
+  }
+
+  return true;
+}
+
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LSFT_T(KC_BSPC):
-        case LT(2, KC_SPC):
-            return 120;
+        case LAG(KC_SPC):
+        case SFT_AREP:
+        case ALGR_REP:
+            return 110;
         default:
             return TAPPING_TERM;
     }
@@ -120,19 +151,19 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case SE_B: return SE_R;
         case SE_Q: return SE_U;
         case SE_K: return SE_Y;
-        case SE_C: return SE_S;
         case LGUI_T(SE_N): return SE_G;
-        case LCTL_T(SE_R): return SE_L;
-        case LALT_T(SE_T): return SE_M;
+        case LALT_T(SE_R): return SE_L;
+        case LCTL_T(SE_T): return SE_M;
         case LT(1, SE_S): return SE_C;
+        case LT(2, SE_C): return SE_K;
         case SE_G: return SE_S;
         case SE_Y: return SE_F;
+        case LT(2, SE_P): return SE_H;
         case LT(1, SE_H): return SE_Y;
-        case LALT_T(SE_A): return SE_O;
-        case LCTL_T(SE_E): return SE_U;
+        case LCTL_T(SE_A): return SE_O;
+        case LALT_T(SE_E): return SE_U;
         case LGUI_T(SE_I): return SE_I;
         case SE_O: return SE_A;
-        case SE_P: return SE_H;
         case SE_F: return SE_Y;
         case SE_DOT: return SE_SLSH;
         case SE_U: return SE_E;
@@ -152,8 +183,9 @@ bool is_flow_tap_key(uint16_t keycode) {
 
     // Exclude specific layer-tap and mod-tap keys
     switch (keycode) {
-        case LT(2, KC_SPC):
-        case LSFT_T(KC_BSPC):
+        case LAG(KC_SPC):
+        case SFT_AREP:
+        case ALGR_REP:
             return false;        // Disable Flow Tap for these keys
     }
 
@@ -175,6 +207,7 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record,
         switch (keycode) {
             case LT(1, SE_S):
             case LT(1, SE_H):
+
                 return 50;  // Short timeout for these keys
 
             default:
@@ -188,8 +221,9 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
                       uint16_t other_keycode, keyrecord_t* other_record) {
     // Allow one-handed chords for these keys
     switch (tap_hold_keycode) {
-        case LT(2, KC_SPC):
-        case LSFT_T(KC_BSPC):
+        case LAG(KC_SPC):
+        case SFT_AREP:
+        case ALGR_REP:
             return true;  // Allow chordal hold even on same hand
     }
 
@@ -259,11 +293,11 @@ bool oled_task_user(void) {
             case _SYM:
                 oled_write_P(PSTR(" SYMBOL\n"), false);
                 break;
+            case _NUM:
+                oled_write_P(PSTR("  NUM\n"), false);
+                break;
             case _NAV:
                 oled_write_P(PSTR("  NAV\n"), false);
-                break;
-            case _FUNC:
-                oled_write_P(PSTR("  FUNC\n"), false);
                 break;
             case _GAME:
                 oled_write_P(PSTR("  GAME\n"), false);
@@ -290,13 +324,6 @@ bool oled_task_user(void) {
         oled_write_P(led_state.caps_lock ? PSTR("  ON\n") : PSTR("  OFF\n"), false);
     }
     return false;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if (record->event.pressed) {
-    set_keylog(keycode, record);
-  }
-  return true;
 }
 #endif // OLED_ENABLE
 
