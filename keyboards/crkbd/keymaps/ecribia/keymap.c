@@ -115,25 +115,30 @@ combo_t key_combos[] = {
     COMBO(ques_combo, SE_QUES),
 };
 
+bool remember_last_key_user(uint16_t keycode, keyrecord_t* record,
+                            uint8_t* remembered_mods) {
+  // Don't remember these keys themselves
+  if (keycode == SFT_AREP || keycode == ALGR_REP) {
+    return false;
+  }
+  return true;
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
-    case SFT_AREP:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          tap_code16(QK_AREP);
-        }
-        return false;  // Skip default handling
+    case SFT_AREP:  // Shift on hold, ALTERNATE repeat on tap
+      if (record->tap.count) {
+        alt_repeat_key_invoke(&record->event);  // Alternate repeat
+        return false;
       }
-      break;  // Continue with default mod-tap handling
+      break;
 
-    case ALGR_REP:
-      if (record->tap.count > 0) {
-        if (record->event.pressed) {
-          tap_code16(QK_REP);
-        }
-        return false;  // Skip default handling
+    case ALGR_REP:  // AltGr on hold, REGULAR repeat on tap
+      if (record->tap.count) {
+        repeat_key_invoke(&record->event);  // Regular repeat
+        return false;
       }
-      break;  // Continue with default mod-tap handling
+      break;
   }
 
   return true;
