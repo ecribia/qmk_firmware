@@ -118,18 +118,22 @@ combo_t key_combos[] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch(keycode) {
     case SFT_AREP:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(QK_AREP);
-        return false;
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          tap_code16(QK_AREP);
+        }
+        return false;  // Skip default handling
       }
-      break;
+      break;  // Continue with default mod-tap handling
 
     case ALGR_REP:
-      if (record->tap.count && record->event.pressed) {
-        tap_code16(QK_REP);
-        return false;
+      if (record->tap.count > 0) {
+        if (record->event.pressed) {
+          tap_code16(QK_REP);
+        }
+        return false;  // Skip default handling
       }
-      break;
+      break;  // Continue with default mod-tap handling
   }
 
   return true;
@@ -137,7 +141,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LAG(KC_SPC):
+        case LAG_T(KC_SPC):
         case SFT_AREP:
         case ALGR_REP:
             return 110;
@@ -183,7 +187,7 @@ bool is_flow_tap_key(uint16_t keycode) {
 
     // Exclude specific layer-tap and mod-tap keys
     switch (keycode) {
-        case LAG(KC_SPC):
+        case LAG_T(KC_SPC):
         case SFT_AREP:
         case ALGR_REP:
             return false;        // Disable Flow Tap for these keys
@@ -221,7 +225,7 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
                       uint16_t other_keycode, keyrecord_t* other_record) {
     // Allow one-handed chords for these keys
     switch (tap_hold_keycode) {
-        case LAG(KC_SPC):
+        case LAG_T(KC_SPC):
         case SFT_AREP:
         case ALGR_REP:
             return true;  // Allow chordal hold even on same hand
