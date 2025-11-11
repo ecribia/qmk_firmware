@@ -167,10 +167,10 @@ const key_override_t o_odia_override = ko_make_basic(MOD_MASK_AG, SE_O, SE_ODIA)
 const key_override_t u_arng_override = ko_make_basic(MOD_MASK_AG, SE_U, SE_ARNG);
 
 const key_override_t *key_overrides[] = {
-    &h_left_override,
-    &a_down_override,
-    &e_up_override,
-    &i_right_override,
+    // &h_left_override,
+    // &a_down_override,
+    // &e_up_override,
+    // &i_right_override,
     &f_adia_override,
     &o_odia_override,
     &u_arng_override,
