@@ -149,17 +149,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LAG_T(KC_SPC):
         case LSFT_T(KC_BSPC):
         case RALT_T(KC_ENT):
-            return 100;
+            return 140;
         default:
             return TAPPING_TERM;
     }
 }
 
 // ALT+LGUI + HAEI movement
-const key_override_t h_left_override = ko_make_basic(MOD_MASK_AG, LT(1, SE_H), KC_LEFT);
-const key_override_t a_down_override = ko_make_basic(MOD_MASK_AG, LCTL_T(SE_A), KC_DOWN);
-const key_override_t e_up_override = ko_make_basic(MOD_MASK_AG, LALT_T(SE_E), KC_UP);
-const key_override_t i_right_override = ko_make_basic(MOD_MASK_AG, LGUI_T(SE_I), KC_RGHT);
+// const key_override_t h_left_override = ko_make_basic(MOD_MASK_AG, LT(1, SE_H), KC_LEFT);
+// const key_override_t a_down_override = ko_make_basic(MOD_MASK_AG, LCTL_T(SE_A), KC_DOWN);
+// const key_override_t e_up_override = ko_make_basic(MOD_MASK_AG, LALT_T(SE_E), KC_UP);
+// const key_override_t i_right_override = ko_make_basic(MOD_MASK_AG, LGUI_T(SE_I), KC_RGHT);
 
 // ALT+LGUI + FOU for Swedish letters
 const key_override_t f_adia_override = ko_make_basic(MOD_MASK_AG, SE_F, SE_ADIA);
