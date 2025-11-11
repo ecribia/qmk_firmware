@@ -155,42 +155,11 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-// ALT+LGUI + HAEI movement (with suppressed modifiers)
-const key_override_t h_left_override = {
-    .trigger_mods = MOD_MASK_AG,
-    .trigger = SE_H,
-    .replacement = KC_LEFT,
-    .suppressed_mods = MOD_MASK_AG,  // This is the key part!
-    .layers = ~0,
-    .options = ko_options_default
-};
-
-const key_override_t a_down_override = {
-    .trigger_mods = MOD_MASK_AG,
-    .trigger = SE_A,
-    .replacement = KC_DOWN,
-    .suppressed_mods = MOD_MASK_AG,
-    .layers = ~0,
-    .options = ko_options_default
-};
-
-const key_override_t e_up_override = {
-    .trigger_mods = MOD_MASK_AG,
-    .trigger = SE_E,
-    .replacement = KC_UP,
-    .suppressed_mods = MOD_MASK_AG,
-    .layers = ~0,
-    .options = ko_options_default
-};
-
-const key_override_t i_right_override = {
-    .trigger_mods = MOD_MASK_AG,
-    .trigger = SE_I,
-    .replacement = KC_RGHT,
-    .suppressed_mods = MOD_MASK_AG,
-    .layers = ~0,
-    .options = ko_options_default
-};
+// ALT+LGUI + HAEI movement
+const key_override_t h_left_override = ko_make_basic(MOD_MASK_AG, LT(1, SE_H), KC_LEFT);
+const key_override_t a_down_override = ko_make_basic(MOD_MASK_AG, LCTL_T(SE_A), KC_DOWN);
+const key_override_t e_up_override = ko_make_basic(MOD_MASK_AG, LALT_T(SE_E), KC_UP);
+const key_override_t i_right_override = ko_make_basic(MOD_MASK_AG, LGUI_T(SE_I), KC_RGHT);
 
 // ALT+LGUI + FOU for Swedish letters
 const key_override_t f_adia_override = ko_make_basic(MOD_MASK_AG, SE_F, SE_ADIA);
