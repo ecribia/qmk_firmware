@@ -36,9 +36,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_B,    SE_L,    SE_D,    SE_W,    SE_Z,                      SE_QUOT,    SE_F,    SE_O,    SE_U,    SE_J,   TO(4),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  LCTL_T(KC_ESC),LGUI_T(SE_N),LALT_T(SE_R),LCTL_T(SE_T),LT(1,SE_S),SE_G,         SE_Y,LT(1,SE_H),LCTL_T(SE_A),LALT_T(SE_E),LGUI_T(SE_I),QK_AREP,
+  LCTL_T(KC_ESC), SE_N,    SE_R,LCTL_T(SE_T),LT(1,SE_S),SE_G,                       SE_Y,LT(1,SE_H),LCTL_T(SE_A),SE_E,  SE_I,QK_AREP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       OSL(1),    SE_Q,    SE_X,    SE_M,LT(2,SE_C),  SE_V,                      SE_K,LT(2,SE_P), SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
+       OSL(1),    SE_Q,    SE_X,LALT_T(SE_M),LT(2,SE_C),  SE_V,                     SE_K,LT(2,SE_P),LALT_T(SE_COMM), SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          OSL(3),LAG_T(KC_SPC),KC_LGUI,    QK_AREP, LSFT_T(KC_BSPC), RALT_T(KC_ENT)
                                       //`--------------------------'  `--------------------------'
@@ -108,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-const uint16_t PROGMEM exlm_combo[] = {SE_M, LT(2,SE_C), COMBO_END};
-const uint16_t PROGMEM ques_combo[] = {SE_COMM, LT(2,SE_P), COMBO_END};
+const uint16_t PROGMEM exlm_combo[] = {LALT_T(SE_M), LT(2,SE_C), COMBO_END};
+const uint16_t PROGMEM ques_combo[] = {LALT_T(SE_COMM), LT(2,SE_P), COMBO_END};
 combo_t key_combos[] = {
     COMBO(exlm_combo, SE_EXLM),
     COMBO(ques_combo, SE_QUES),
@@ -182,9 +182,9 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case SE_B: return SE_R;
         case SE_Q: return SE_U;
         case SE_K: return SE_Y;
-        case SE_M: return SE_B;
-        case LGUI_T(SE_N): return SE_G;
-        case LALT_T(SE_R): return SE_L;
+        case LALT_T(SE_M): return SE_B;
+        case SE_N: return SE_G;
+        case SE_R: return SE_L;
         case LCTL_T(SE_T): return SE_M;
         case LT(1, SE_S): return SE_C;
         case LT(2, SE_C): return SE_K;
@@ -193,8 +193,8 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case LT(2, SE_P): return SE_H;
         case LT(1, SE_H): return SE_Y;
         case LCTL_T(SE_A): return SE_O;
-        case LALT_T(SE_E): return SE_U;
-        case LGUI_T(SE_I): return SE_I;
+        case SE_E: return SE_U;
+        case SE_I: return SE_I;
         case SE_O: return SE_K;
         case SE_F: return SE_Y;
         case SE_DOT: return SE_SLSH;
