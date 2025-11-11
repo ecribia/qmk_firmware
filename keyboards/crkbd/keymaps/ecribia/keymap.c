@@ -342,13 +342,6 @@ bool oled_task_user(void) {
     } else {
         // RIGHT SIDE - WPM and Caps Lock
         oled_write_P(PSTR("\n"), false);
-
-        // WPM Display
-        oled_write_P(PSTR("  WPM\n"), false);
-        oled_write_P(PSTR(" -----\n"), false);
-        oled_write_P(PSTR("  "), false);
-        oled_write(get_u8_str(get_current_wpm(), ' '), false);
-        oled_write_P(PSTR("\n\n"), false);
     }
     return false;
 }
