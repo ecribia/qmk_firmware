@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 
-#define QUICK_TAP_TERM 0
+#define QUICK_TAP_TERM 150
 #define TAPPING_TERM 250
 #define TAPPING_TERM_PER_KEY
 #define COMBO_TERM 40
@@ -32,6 +32,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define FLOW_TAP_TERM 150
 #define CHORDAL_HOLD
+
+#define MK_KINETIC_SPEED
+#define MOUSEKEY_MOVE_DELTA 6
+#define MOUSEKEY_MAX_SPEED 8
+#define MOUSEKEY_TIME_TO_MAX 30
 
 
 #define MASTER_LEFT

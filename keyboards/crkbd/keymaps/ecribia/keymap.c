@@ -36,11 +36,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_B,    SE_L,    SE_D,    SE_W,    SE_Z,                      SE_QUOT,    SE_F,    SE_O,    SE_U,    SE_J,   TO(4),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  LCTL_T(KC_ESC),LGUI_T(SE_N),LALT_T(SE_R),LCTL_T(SE_T),LT(1,SE_S),SE_G,         SE_Y,LT(1,SE_H),LCTL_T(SE_A),LALT_T(SE_E),LGUI_T(SE_I),SE_ODIA,
+  LCTL_T(KC_ESC),LGUI_T(SE_N),LALT_T(SE_R),LCTL_T(SE_T),LT(1,SE_S),SE_G,         SE_Y,LT(1,SE_H),LCTL_T(SE_A),LALT_T(SE_E),LGUI_T(SE_I),QK_AREP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        OSL(1),    SE_Q,    SE_X,    SE_M,LT(2,SE_C),  SE_V,                      SE_K,LT(2,SE_P), SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         OSL(3),LAG_T(KC_SPC), KC_LGUI,    KC_BSPC, SFT_AREP, ALGR_REP
+                                         OSL(3),LAG_T(KC_SPC),LGUI_T(KC_ENT),    ALGR_REP, SFT_AREP, KC_BSPC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -147,6 +147,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LAG_T(KC_SPC):
+        case LGUI_T(KC_ENT):
         case ALGR_REP:
             return 170;
         default:
@@ -159,19 +160,20 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case SE_B: return SE_R;
         case SE_Q: return SE_U;
         case SE_K: return SE_Y;
+        case SE_M: return SE_B;
         case LGUI_T(SE_N): return SE_G;
         case LALT_T(SE_R): return SE_L;
         case LCTL_T(SE_T): return SE_M;
         case LT(1, SE_S): return SE_C;
         case LT(2, SE_C): return SE_K;
         case SE_G: return SE_S;
-        case SE_Y: return SE_F;
+        case SE_Y: return SE_P;
         case LT(2, SE_P): return SE_H;
         case LT(1, SE_H): return SE_Y;
         case LCTL_T(SE_A): return SE_O;
         case LALT_T(SE_E): return SE_U;
         case LGUI_T(SE_I): return SE_I;
-        case SE_O: return SE_A;
+        case SE_O: return SE_K;
         case SE_F: return SE_Y;
         case SE_DOT: return SE_SLSH;
         case SE_U: return SE_E;
@@ -192,6 +194,7 @@ bool is_flow_tap_key(uint16_t keycode) {
     // Exclude specific layer-tap and mod-tap keys
     switch (keycode) {
         case LAG_T(KC_SPC):
+        case LGUI_T(KC_ENT):
             return false;        // Disable Flow Tap for these keys
     }
 
@@ -229,6 +232,7 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     // Allow one-handed chords for these keys
     switch (tap_hold_keycode) {
         case LAG_T(KC_SPC):
+        case LGUI_T(KC_ENT):
             return true;  // Allow chordal hold even on same hand
     }
 
@@ -321,12 +325,6 @@ bool oled_task_user(void) {
         oled_write_P(PSTR("  "), false);
         oled_write(get_u8_str(get_current_wpm(), ' '), false);
         oled_write_P(PSTR("\n\n"), false);
-
-        // Caps Lock status
-        led_t led_state = host_keyboard_led_state();
-        oled_write_P(PSTR(" CAPS\n"), false);
-        oled_write_P(PSTR(" ----\n"), false);
-        oled_write_P(led_state.caps_lock ? PSTR("  ON\n") : PSTR("  OFF\n"), false);
     }
     return false;
 }
