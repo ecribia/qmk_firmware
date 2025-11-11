@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        OSL(1),    SE_Q,    SE_X,    SE_M,LT(2,SE_C),  SE_V,                      SE_K,LT(2,SE_P), SE_COMM,  SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                         OSL(3),LAG_T(KC_SPC),LGUI_T(KC_ENT),    ALGR_REP, SFT_AREP, KC_BSPC
+                                         OSL(3),LAG_T(KC_SPC),KC_LGUI,    QK_AREP, LSFT_T(KC_BSPC), RALT_T(KC_ENT)
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -147,13 +147,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case LAG_T(KC_SPC):
-        case LGUI_T(KC_ENT):
-        case ALGR_REP:
+        case LSFT_T(KC_BSPC):
+        case RALT_T(KC_ENT):
             return 170;
         default:
             return TAPPING_TERM;
     }
 }
+
+// ALT+LGUI + HAEI movement
+const key_override_t h_left_override = ko_make_basic(MOD_MASK_AG, SE_H, KC_LEFT);
+const key_override_t a_down_override = ko_make_basic(MOD_MASK_AG, SE_A, KC_DOWN);
+const key_override_t e_up_override = ko_make_basic(MOD_MASK_AG, SE_E, KC_UP);
+const key_override_t i_right_override = ko_make_basic(MOD_MASK_AG, SE_I, KC_RGHT);
+
+// ALT+LGUI + FOU for Swedish letters
+const key_override_t f_adia_override = ko_make_basic(MOD_MASK_AG, SE_F, SE_ADIA);
+const key_override_t o_odia_override = ko_make_basic(MOD_MASK_AG, SE_O, SE_ODIA);
+const key_override_t u_arng_override = ko_make_basic(MOD_MASK_AG, SE_U, SE_ARNG);
+
+const key_override_t *key_overrides[] = {
+    &h_left_override,
+    &a_down_override,
+    &e_up_override,
+    &i_right_override,
+    &f_adia_override,
+    &o_odia_override,
+    &u_arng_override,
+    NULL // Array must be NULL-terminated
+};
 
 uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
   switch (keycode) {
@@ -194,7 +216,8 @@ bool is_flow_tap_key(uint16_t keycode) {
     // Exclude specific layer-tap and mod-tap keys
     switch (keycode) {
         case LAG_T(KC_SPC):
-        case LGUI_T(KC_ENT):
+        case LSFT_T(KC_BSPC):
+        case RALT_T(KC_ENT):
             return false;        // Disable Flow Tap for these keys
     }
 
@@ -232,7 +255,8 @@ bool get_chordal_hold(uint16_t tap_hold_keycode, keyrecord_t* tap_hold_record,
     // Allow one-handed chords for these keys
     switch (tap_hold_keycode) {
         case LAG_T(KC_SPC):
-        case LGUI_T(KC_ENT):
+        case LSFT_T(KC_BSPC):
+        case RALT_T(KC_ENT):
             return true;  // Allow chordal hold even on same hand
     }
 

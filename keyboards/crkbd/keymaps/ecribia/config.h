@@ -33,7 +33,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FLOW_TAP_TERM 150
 #define CHORDAL_HOLD
 
-#define MK_KINETIC_SPEED
 #define MOUSEKEY_MOVE_DELTA 6
 #define MOUSEKEY_MAX_SPEED 8
 #define MOUSEKEY_TIME_TO_MAX 30

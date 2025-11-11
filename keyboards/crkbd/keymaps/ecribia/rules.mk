@@ -10,5 +10,6 @@ COMBO_ENABLE		= yes
 OLED_ENABLE         = yes
 OLED_DRIVER         = ssd1306
 EXTRAKEY_ENABLE     = no
+KEY_OVERRIDE_ENABLE = yes
 
 WPM_ENABLE		    = yes
