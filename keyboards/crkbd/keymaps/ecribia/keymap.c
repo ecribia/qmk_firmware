@@ -149,7 +149,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case LAG_T(KC_SPC):
         case LSFT_T(KC_BSPC):
         case RALT_T(KC_ENT):
-            return 140;
+            return 125;
         default:
             return TAPPING_TERM;
     }
