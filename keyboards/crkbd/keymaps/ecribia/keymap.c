@@ -36,9 +36,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_B,    SE_L,    SE_D,    SE_W,    SE_Z,                      SE_QUOT,    SE_F,    SE_O,    SE_U,    SE_J,   TO(4),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-  LCTL_T(KC_ESC), SE_N,    SE_R,LCTL_T(SE_T),LT(1,SE_S),SE_G,                       SE_Y,LT(1,SE_H),LCTL_T(SE_A),SE_E,  SE_I,QK_AREP,
+  LCTL_T(KC_ESC), SE_N,    SE_R,LT(2,SE_T),LT(1,SE_S),SE_G,                       SE_Y,LT(1,SE_H),LT(2,SE_A),SE_E,  SE_I,QK_AREP,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       OSL(1),    SE_Q,    SE_X,LALT_T(SE_M),LT(2,SE_C),  SE_V,                     SE_K,LT(2,SE_P),LALT_T(SE_COMM), SE_DOT, SE_MINS, KC_RALT,
+       OSL(1),    SE_Q,    SE_X,LCTL_T(SE_M),LALT_T(SE_C),  SE_V,                     SE_K,LALT_T(SE_P),LCTL_T(SE_COMM), SE_DOT, SE_MINS, KC_RALT,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                          OSL(3),LAG_T(KC_SPC),KC_LGUI,    QK_AREP, LSFT_T(KC_BSPC), RALT_T(KC_ENT)
                                       //`--------------------------'  `--------------------------'
@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
        KC_TAB,    SE_1,    SE_Q,    SE_W,    SE_E,    SE_R,                         SE_Y,    SE_U,    SE_I,    SE_O,   SE_F,    TO(0),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_ESC,    SE_2,    SE_A,    SE_S,    SE_D,    SE_F,                         SE_H,    SE_J,    SE_K,    SE_L, SE_SCLN, SE_QUOT,
+       KC_ESC,    SE_2,    SE_A,    SE_S,    SE_D,    SE_F,                         SE_H,    SE_J,    SE_K,    SE_L, SE_B, SE_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    SE_3,    SE_Z,    SE_X,    SE_C,    SE_V,                         SE_N,    SE_M,    SE_G,    SE_P, SE_SLSH,  KC_ESC,
+      KC_LSFT,    SE_3,    SE_Z,    SE_X,    SE_C,    SE_V,                         SE_N,    SE_M,    SE_G,    SE_P, SE_4,  KC_ESC,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_LGUI,  KC_SPC, _______,    KC_BSPC,    SE_T,  KC_ENT
                                       //`--------------------------'  `--------------------------'
@@ -182,17 +182,17 @@ uint16_t get_alt_repeat_key_keycode_user(uint16_t keycode, uint8_t mods) {
         case SE_B: return SE_R;
         case SE_Q: return SE_U;
         case SE_K: return SE_Y;
-        case LALT_T(SE_M): return SE_B;
+        case LCTL_T(SE_M): return SE_B;
         case SE_N: return SE_G;
         case SE_R: return SE_L;
-        case LCTL_T(SE_T): return SE_M;
+        case LT(2, SE_T): return SE_M;
         case LT(1, SE_S): return SE_C;
-        case LT(2, SE_C): return SE_K;
+        case LALT_T(SE_C): return SE_K;
         case SE_G: return SE_S;
         case SE_Y: return SE_P;
-        case LT(2, SE_P): return SE_H;
+        case LALT_T(SE_P): return SE_H;
         case LT(1, SE_H): return SE_Y;
-        case LCTL_T(SE_A): return SE_O;
+        case LT(2,SE_A): return SE_O;
         case SE_E: return SE_U;
         case SE_I: return SE_I;
         case SE_O: return SE_K;
@@ -239,8 +239,8 @@ uint16_t get_flow_tap_term(uint16_t keycode, keyrecord_t* record,
         switch (keycode) {
             case LT(1,SE_S):
             case LT(1,SE_H):
-            case LT(2,SE_C):
-            case LT(2,SE_P):
+            case LT(2,SE_T):
+            case LT(2,SE_A):
                 return 50;  // Short timeout for these keys
 
             default:
