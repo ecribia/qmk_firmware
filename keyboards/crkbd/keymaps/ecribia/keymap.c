@@ -108,8 +108,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-const uint16_t PROGMEM exlm_combo[] = {LALT_T(SE_M), LT(2,SE_C), COMBO_END};
-const uint16_t PROGMEM ques_combo[] = {LALT_T(SE_COMM), LT(2,SE_P), COMBO_END};
+const uint16_t PROGMEM exlm_combo[] = {LCTL_T(SE_M), LALT_T(SE_C), COMBO_END};
+const uint16_t PROGMEM ques_combo[] = {LCTL_T(SE_COMM), LALT_T(SE_P), COMBO_END};
 combo_t key_combos[] = {
     COMBO(exlm_combo, SE_EXLM),
     COMBO(ques_combo, SE_QUES),

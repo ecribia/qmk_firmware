@@ -63,7 +63,7 @@ NIX_ENFORCE_NO_NATIVE='1'
 export NIX_ENFORCE_NO_NATIVE
 NIX_HARDENING_ENABLE='bindnow format fortify fortify3 libcxxhardeningextensive libcxxhardeningfast pic relro stackclashprotection stackprotector strictoverflow zerocallusedregs'
 export NIX_HARDENING_ENABLE
-NIX_LDFLAGS='-rpath /home/nocxium/Documents/qmk_firmware/outputs/out/lib  -L/nix/store/cdaifv92znxy5ai4sawricjl0p5b9sgf-python3-3.13.11/lib -L/nix/store/fd08265f6l9xmsg7kcxrh5bkaib4va84-hidapi-0.15.0/lib -L/nix/store/h1bydspfzrrysx9a2mmjwdwhjd8vd8vi-avrdude-8.1/lib -L/nix/store/n9h27wsvnpjj5jphjplhs8x1had22nr4-avr-binutils-2.44/lib -L/nix/store/d8kyql90dn9kz4d7x9gpiy3xrmq8y4hb-python3-3.13.11-env/lib -L/nix/store/cdaifv92znxy5ai4sawricjl0p5b9sgf-python3-3.13.11/lib -L/nix/store/fd08265f6l9xmsg7kcxrh5bkaib4va84-hidapi-0.15.0/lib -L/nix/store/h1bydspfzrrysx9a2mmjwdwhjd8vd8vi-avrdude-8.1/lib -L/nix/store/n9h27wsvnpjj5jphjplhs8x1had22nr4-avr-binutils-2.44/lib -L/nix/store/d8kyql90dn9kz4d7x9gpiy3xrmq8y4hb-python3-3.13.11-env/lib'
+NIX_LDFLAGS='-rpath /home/ozz/Documents/qmk_firmware/outputs/out/lib  -L/nix/store/cdaifv92znxy5ai4sawricjl0p5b9sgf-python3-3.13.11/lib -L/nix/store/fd08265f6l9xmsg7kcxrh5bkaib4va84-hidapi-0.15.0/lib -L/nix/store/h1bydspfzrrysx9a2mmjwdwhjd8vd8vi-avrdude-8.1/lib -L/nix/store/n9h27wsvnpjj5jphjplhs8x1had22nr4-avr-binutils-2.44/lib -L/nix/store/d8kyql90dn9kz4d7x9gpiy3xrmq8y4hb-python3-3.13.11-env/lib -L/nix/store/cdaifv92znxy5ai4sawricjl0p5b9sgf-python3-3.13.11/lib -L/nix/store/fd08265f6l9xmsg7kcxrh5bkaib4va84-hidapi-0.15.0/lib -L/nix/store/h1bydspfzrrysx9a2mmjwdwhjd8vd8vi-avrdude-8.1/lib -L/nix/store/n9h27wsvnpjj5jphjplhs8x1had22nr4-avr-binutils-2.44/lib -L/nix/store/d8kyql90dn9kz4d7x9gpiy3xrmq8y4hb-python3-3.13.11-env/lib'
 export NIX_LDFLAGS
 NIX_LDFLAGS_FOR_TARGET=' -L/nix/store/cdaifv92znxy5ai4sawricjl0p5b9sgf-python3-3.13.11/lib -L/nix/store/fd08265f6l9xmsg7kcxrh5bkaib4va84-hidapi-0.15.0/lib -L/nix/store/h1bydspfzrrysx9a2mmjwdwhjd8vd8vi-avrdude-8.1/lib -L/nix/store/n9h27wsvnpjj5jphjplhs8x1had22nr4-avr-binutils-2.44/lib -L/nix/store/d8kyql90dn9kz4d7x9gpiy3xrmq8y4hb-python3-3.13.11-env/lib'
 export NIX_LDFLAGS_FOR_TARGET
@@ -184,7 +184,7 @@ name='nix-shell-env'
 export name
 nativeBuildInputs=''
 export nativeBuildInputs
-out='/home/nocxium/Documents/qmk_firmware/outputs/out'
+out='/home/ozz/Documents/qmk_firmware/outputs/out'
 export out
 outputBin='out'
 outputDev='out'
@@ -215,7 +215,7 @@ preConfigurePhases=' updateAutotoolsGnuConfigScriptsPhase'
 declare -a preFixupHooks=('_moveToShare' '_multioutDocs' '_multioutDevs' )
 preferLocalBuild='1'
 export preferLocalBuild
-prefix='/home/nocxium/Documents/qmk_firmware/outputs/out'
+prefix='/home/ozz/Documents/qmk_firmware/outputs/out'
 declare -a propagatedBuildDepFiles=('propagated-build-build-deps' 'propagated-native-build-inputs' 'propagated-build-target-deps' )
 propagatedBuildInputs=''
 export propagatedBuildInputs
